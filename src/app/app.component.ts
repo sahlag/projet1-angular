@@ -12,14 +12,24 @@ export class AppComponent {
   content: string;
   url: string;
   isEditable: boolean;
+  classesBtn: object;
 
   constructor() {
     this.content = 'cest un texte';
    this.url = 'https://www.facebook.com/Lhomme.expert?ref=bookmarks';
     this.isEditable = true;
+    this.updateClassesBtn();
 }
 public changeStyle() {
 this.isEditable = !this.isEditable;
+this.updateClassesBtn();
+console.log(this.classesBtn);
 }
+ private updateClassesBtn() {
+  this.classesBtn = {
+    'teal': this.isEditable,
+    'orange': !this.isEditable
+  };
+ }
 }
 

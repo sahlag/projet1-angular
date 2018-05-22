@@ -12,8 +12,8 @@
         <div class="row center">
          
           <a  id="download-button" class="btn-large waves-effect waves-light" 
-          [href] ="url" [class.teal] ="isEditable" [class.orange] ="!isEditable">Facebook</a>
-         
+          [href] ="url" [ngClass]="classesBtn">Facebook</a>
+        
         </div>
         <div> 
           <button class="btn-large" (click)="changeStyle()">changer le style</button>
