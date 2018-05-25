@@ -18,7 +18,7 @@ export class ProductlistComponent  {
 // this.selectedtProduct = PRODUCT_TEST;
 productService.getProducts();
 // initialisation de tableau de produits
-this.products = TAB_PRODUCT ;
+this.products = productService.getProducts();
 
 // ilitialisation de l moyenne
 this.moyenne = 0;
