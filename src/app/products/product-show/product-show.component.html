@@ -1,0 +1,15 @@
+<article *ngIf="product; else blockNoSelection">
+    <h3>Détail du produit</h3>
+    <h4>{{ product.name }}</h4>
+    <p>{{ product.description }}</p>
+
+    <h4>Votez</h4>
+    
+    <input type="range" min="0" max="5" #note>
+    <button (click)="onVoted(note.value)" class="btn">Enregestrez</button>
+    </article>
+
+    <ng-template #blockNoSelection>
+    <p>Pas de produit sélectionné</p>
+  
+    </ng-template>

@@ -1,37 +1,25 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<ul id="dropdown1" class="dropdown-content">
+  <li><a routerLink="produit/2">Produit 2</a></li>
+  <li><a routerLink="produit/3">Produit 3</a></li>
+  <li><a routerLink="produit/350">Produit 350</a></li>
+  <li><a routerLink="produit/babar">Produit babar</a></li>
+  <li><a routerLink="produit/">Produit null</a></li>
   
-  <div class="section no-pad-bot" id="index-banner">
-      <div class="container">
-        <br><br>
-        <h1 class="header center teal-text" 
-        [style.display]="isEditable ? 'block' : 'none'">{{ title }}</h1>
-        <div class="row center">
-          <h5 class="header col s12 light"[attr.contenteditable]="isEditable">{{ content }}</h5> 
-        </div>
-        <div class="row center">
-         
-          <a  id="download-button" class="btn-large waves-effect waves-light" 
-          [href] ="url" [ngClass]="classesBtn">Facebook</a>
-        
-        </div>
-        <div> 
-          <button class="btn-large" (click)="changeStyle()">changer le style</button>
-        </div>
-        <br><br>
-  
-      </div>
-    </div>
+</ul>
+<nav>
+  <div class="nav-wrapper">
+    <a routerLink="/" class="brand-logo">Accueil</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a routerLink="/produit">Produits</a></li>
+      <li><a href="badges.html">Components</a></li>
+      <!-- Dropdown Trigger -->
+      <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Détail des produit
+        <i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+  </div>
+</nav>
 
-<h2>
-  {{ disciption }}
-</h2>
-<p>
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut facere ut sed fuga eaque ipsa porro deserunt ipsam explicabo eos ipsum deleniti rerum aliquid earum accusamus, doloribus error totam, 
-  obcaecati sunt asperiores tempora molestiae magni delectus. Facere voluptate rerum eius cumque expedita quaerat porro alias! Repudiandae iusto minima labore qui provident, 
-  sunt impedit modi! Ut aliquid inventore magnam nulla a tempora impedit ab temporibus eligendi laborum iusto voluptatibus quidem enim alias, cum omnis quod veritatis est iste ducimus.
-   Eveniet labore ad corrupti in qui architecto ipsam voluptatibus minima soluta porro aliquam cupiditate officia dolor accusamus nemo, repudiandae ipsa optio esse.
-</p>
-<app-productlist>
-    
-</app-productlist>
+ 
+
+<router-outlet></router-outlet>

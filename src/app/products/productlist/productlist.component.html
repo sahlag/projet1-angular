@@ -1,0 +1,24 @@
+<section class="container" >
+<h2>
+  Liste des produits
+</h2>
+<!--<ul *ngIf="selectedtProduct; else blockNoSelection"-->
+  <ul class="collection with-header">
+    
+    <li *ngFor="let product of products; let i=index" class="collection-item">
+      <div>
+        {{ i }} - {{ product.name }}
+        <a (click)="changeProduct(product)" class="secondary-content">
+        <i class="material-icons">send</i></a>
+      </div>
+    </li>
+    
+  </ul>
+
+  <p>Moyenne des votes: {{ moyenne }}</p>
+        
+  <app-product-show [product]="selectedProduct" [isListParent]="true" (voted)="updateMoyenne($event)"></app-product-show>
+
+
+</section>
+

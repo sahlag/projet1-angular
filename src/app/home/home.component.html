@@ -1,0 +1,50 @@
+<div style="text-align:center">
+  
+  <div class="section no-pad-bot" id="index-banner">
+      <div class="container">
+        <br><br>
+        <h1 class="header center teal-text" 
+        [style.display]="isEditable ? 'block' : 'none'">{{ title }}</h1>
+        <div class="row center">
+          <h5 class="header col s12 light"[attr.contenteditable]="isEditable">{{ content }}</h5> 
+        </div>
+        <div class="row center">
+         
+          
+        
+       
+          <button class="btn-large" (click)="changeStyle()">changer le style</button>
+          <a  id="download-button" class="btn-large waves-effect waves-light" 
+          [href] ="url" [ngClass]="classesBtn">Facebook</a>
+       
+          <a routerLink="/produit" class="btn-large grey darken-3">Voir les produits</a>
+        </div>
+        
+<div class="row center flow-text"> 
+        <p>Bilan sur la météo : 
+            <ng-container [ngSwitch]="meteo">
+              <ng-container *ngSwitchCase="'ensoleillé'">il fait beau</ng-container>
+              <ng-container *ngSwitchCase="'nuageux'">il va bientôt pleuvoir</ng-container>
+              <ng-container *ngSwitchCase="'pluvieux'">il pleut</ng-container>
+              <ng-container *ngSwitchCase="'tempête'">fuyez !</ng-container>
+              <ng-container *ngSwitchDefault>impossible à déterminer</ng-container>
+            </ng-container>
+         </p>  
+    
+  
+</div>
+        <br><br>
+  
+      </div>
+    </div>
+
+<h2>
+  {{ disciption }}
+</h2>
+<p [ngStyle]="objStyle" >
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut facere ut sed fuga eaque ipsa porro deserunt ipsam explicabo eos ipsum deleniti rerum aliquid earum accusamus, doloribus error totam, 
+  obcaecati sunt asperiores tempora molestiae magni delectus. Facere voluptate rerum eius cumque expedita quaerat porro alias! Repudiandae iusto minima labore qui provident, 
+  sunt impedit modi! Ut aliquid inventore magnam nulla a tempora impedit ab temporibus eligendi laborum iusto voluptatibus quidem enim alias, cum omnis quod veritatis est iste ducimus.
+   Eveniet labore ad corrupti in qui architecto ipsam voluptatibus minima soluta porro aliquam cupiditate officia dolor accusamus nemo, repudiandae ipsa optio esse.
+</p>
+  

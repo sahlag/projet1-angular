@@ -1,0 +1,19 @@
+
+<section class="container">
+<h2>Editer le produit</h2>
+<form action="">
+  <div class="input-field">
+  
+  <input [(ngModel)]="product.name" type="text" name="name" id="name">
+  <label for="name">Nom du produit</label>
+  </div>
+
+  <div class="input-field">
+  <label for="description"></label>
+  <textarea  [(ngModel)]="product.description" name="description" id="description" cols="30" rows="10" class="materialize-textarea">Description du produit</textarea>
+  </div>
+
+</form>
+
+<pre>{{ product|json}}</pre>
+</section>
