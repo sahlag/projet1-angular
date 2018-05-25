@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import { Product, PRODUCT_TEST, TAB_PRODUCT } from '../../model/product';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-productlist',
@@ -13,8 +14,9 @@ export class ProductlistComponent  {
   private moyenne: number;
   private notes: Array<number|string>;
 
-  constructor() {
+  constructor(productService: ProductService) {
 // this.selectedtProduct = PRODUCT_TEST;
+productService.getProducts();
 // initialisation de tableau de produits
 this.products = TAB_PRODUCT ;
 
