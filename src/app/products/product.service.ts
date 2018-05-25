@@ -13,7 +13,7 @@ export class ProductService {
   public getProducts(): Observable <Product[]> {
     console.log('hello getProducts');
     return of(TAB_PRODUCT).pipe(
-     delay(5000)
+     delay(1000)
     );
   }
 

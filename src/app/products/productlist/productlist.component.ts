@@ -23,7 +23,6 @@ productService.getProducts().subscribe(
   }
 );
 // initialisation de tableau de produits
-// this.products = productService.getProducts();
 
 // ilitialisation de l moyenne
 this.moyenne = 0;
