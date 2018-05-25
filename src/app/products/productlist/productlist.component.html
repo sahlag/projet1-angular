@@ -3,7 +3,7 @@
   Liste des produits
 </h2>
 <!--<ul *ngIf="selectedtProduct; else blockNoSelection"-->
-  <ul class="collection with-header">
+  <ul *ngIf='products' class="collection with-header">
     
     <li *ngFor="let product of products; let i=index" class="collection-item">
       <div>

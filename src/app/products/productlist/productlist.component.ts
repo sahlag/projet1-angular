@@ -15,10 +15,15 @@ export class ProductlistComponent  {
   private notes: Array<number|string>;
 
   constructor(productService: ProductService) {
+    this.products = [];
 // this.selectedtProduct = PRODUCT_TEST;
-productService.getProducts();
+productService.getProducts().subscribe(
+  (data) => {
+    this.products = data;
+  }
+);
 // initialisation de tableau de produits
-this.products = productService.getProducts();
+// this.products = productService.getProducts();
 
 // ilitialisation de l moyenne
 this.moyenne = 0;
