@@ -1,79 +1,101 @@
 // Modules angular
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import {Product, TAB_PRODUCT } from '../../model/product';
-// Modules perso
+import { Component, Input, Output, EventEmitter, OnInit, DoCheck } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-// import { EventEmitter } from 'events';
+
+// Modèle perso
+import { Product, TAB_PRODUCT } from '../../model/product';
+
 @Component({
   selector: 'app-product-show',
   templateUrl: './product-show.component.html',
   styleUrls: ['./product-show.component.css']
 })
-export class ProductShowComponent {
-  // propriété entrante passée par le parentz
-  @Input() public product: Product;
-  // propriété sortante passée par le parent
+export class ProductShowComponent implements OnInit, DoCheck {
+
+  // Propriété entrante passée par le parent
+  @Input()  private product: Product;
+  // Evenement sortant pour le parent
   @Output() private voted: EventEmitter<number>;
-  // on stocke le routeur
+
+  // On stocke le routeur et le route pour les utiliser où on veut dans la classe
   private router: Router;
   private route: ActivatedRoute;
-  // booléen pour savoir si le parent est productList ou si le component a été chargé par l' url
-@Input() private isListParent: boolean;
+
+  // Booléen pour savoir si le parent est ProductList ou si le component a été chargé par l'URL
+  @Input() private isListParent: boolean;
 
   constructor(
     route: ActivatedRoute,
     router: Router
   ) {
-    if (this.isListParent) {
+    // Initialisation de l'événément pour le parent
+    this.voted = new EventEmitter<number>();
+    // On stocke le router dans la classe
+    this.router = router;
+    // On stocke la route active dans la classe
+    this.route = route;
+  }
 
-      this.voted = new EventEmitter<number>();
-    } else {
-      this.router = router;
-      this.route = route;
-    }
 
-
+  /**
+   * Fonction qui se déclenche lorsque le traitement du constructeur est terminé
+   */
+  ngOnInit(): void {
     if (!this.isListParent) {
-    const id: number = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-    console.log(`le nombre correspandant à l'id passé a la route: ${id}`);
+      // Récupération de l'id passé en paramètre de la route
+      const id: number = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+      console.log(`Le nombre correspondant à l'id passé dans la route est : ${id}`);
 
-     if (!isNaN(id)) {
-      this.getProduct(id);
-    } else {
-    this.router.navigate(['/not-found']);
+      if (!isNaN(id)) {
+        this.getProduct(id);
+      } else {
+        this.router.navigate(['/not-found']);
+      }
     }
   }
-}
+  ngDoCheck(): void {
+    const id: number = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+    if (this.product && !this.isListParent) {
+    if (id !== this.product.id) {
+     this.getProduct(id);
+    }
+  }
+  }
 
-
-private onVoted(note: number) {
-console.log('Nouveau vote (show :' + note);
-this.voted.emit(note);
-}
-/**
-   * on réagie au vote
+  /**
+   * On réagit au vote
    * @param note
    */
-// Cette essaye de changer un produit par rapport à son id
+  private onVoted(note: number): void {
+    console.log('Nouveau vote (show) : ' + note);
+    this.voted.emit(note);
+  }
+
+  /**
+   * Cette méthode essaye de charger un produit par rapport à son id
+   * @param id
+   */
   private getProduct(id: number): void {
-let products: Product[] = TAB_PRODUCT;
+    const products: Product[] = TAB_PRODUCT;
+    const tableauTrie = products.filter(
+      function(elem) {
+        if (elem.id === id) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    );
 
-products = products.filter(
-  function(elem) {
-  if (elem.id === id) {
-return true;
-  } else {
-    return false;
-  }
-  }
-);
-// syntax ES6
-// products = products.filter( elem => elem.id === id);
-if (products.length === 1) {
+    // Syntaxe ES6
+    // products = products.filter(elem => elem.id === id);
 
-  this.product = products[0];
-} else {
-this.router.navigate(['/not-found']);
-}
-}
+    if (tableauTrie.length === 1) {
+      this.product = tableauTrie[0];
+    } else {
+      this.router.navigate(['/not-found']);
+    }
+
+  }
+
 }
